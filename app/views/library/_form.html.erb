@@ -1,0 +1,12 @@
+<%= form_with(model: library, local: true) do |form| %>
+
+  <div>
+    <%= form.label :title %>
+    <%= form.text_field :title, id: :library_title %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+
+<% end %>

@@ -1,0 +1,10 @@
+<h1>Edit Library</h1>
+
+<form action="/libraries/update?id=<%= @library.id %>" method="post">
+  <label>
+    New Title:<br>
+    <input type="text" name="title" value="<%= @library.title %>">
+  </label>
+<br><br>
+  <input type="submit" value="Submit Library">
+</form>

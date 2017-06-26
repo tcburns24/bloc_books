@@ -14,12 +14,13 @@ class Library
     return @@libraries
   end
 
-  def find(id)
+  def self.find(id)
     Library.all[id - 1]
   end
 
   def assign_attributes(data_hash)
-    @title = data_hash.title
+    data_hash.each { |key, value| self.instance_variable_set("@#{key}", value)}
+    # @title = data_hash.title
   end
 
   def destroy

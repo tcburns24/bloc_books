@@ -37,26 +37,40 @@ class BooksController < BlocWorks::Controller
   end
 
   def show
-    @book = Book.find(params[:id])
+    req     = Rack::Request.new(@env)
+    id_arg  = req.params["id"]  # This gets the id=3 part, but "3" is a string
+    id      = id_arg.to_i       # This changes from the string "3" to the integer 3
+    @book = Book.find(id)
+    render :show
+  end
+
+  def new
+    render :new
   end
 
   def create
-    @book = Book.new
+    req = Rack::Request.new(@env)
+    title_arg = req.params["title"]
+    author_arg = req.params["author"]
+    @book = Book.new(title_arg, author_arg)
+    render :create
+  end
+
+  def edit
+    @book = Book.find(params["id"].to_i)
+    render :edit
   end
 
   def update
-    @book = Book.find(params[:id])
+    @book = Book.find(params["id"].to_i)
     @book.assign_attributes(params)
+    render :update
   end
 
   def destroy
-    @book = Book.find(params[:id])
-    if @book.destroy
-      flash[:notice] = "\"#{@book.title}\" was deleted successfully."
-    else
-      flash.now[:alert] = "There was an error deleting your book."
-      render :show
-    end
+    @book = Book.find(params["id"].to_i)
+    @book.destroy
+    render :delete
   end
 
 end

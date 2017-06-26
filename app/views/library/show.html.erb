@@ -1,0 +1,10 @@
+<div>
+  <h2><%= @library.title %></h2>
+  <div>
+    <a href="/libraries/destroy?id=<%= @library.id %>"> Delete <%= @library.title %> </a>
+  </div>
+
+  <div>
+    <a href="/libraries/edit?id=<%= @library.id %>"> Edit <%= @library.title %> </a>
+  </div>
+</div>

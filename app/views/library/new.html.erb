@@ -1,3 +1,12 @@
 <h1>New Book</h1>
 
-<%= render 'form', library: @library %>
+<form action="/libraries/create" method='post'>
+  <label>
+    Title: <br>
+    <input type="text" name="title">
+  </label>
+  <br><br>
+  <label>
+    <input type="submit" value="Submit Library">
+  </label>
+</form>

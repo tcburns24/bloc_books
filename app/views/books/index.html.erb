@@ -1,6 +1,12 @@
 <div>
+
+  <div>
+    <a href='/books/new'>Submit a new book</a>
+  </div>
+
   <% @books.each do |book| %>
-    <h2><%= book.title %></h2>
-    <h3><%= book.author %></h3>
+    <h2>
+      <a href="/books/show?id=<%= book.id %>"> <%= book.title %> </a>
+    </h2>
   <% end %>
 </div>

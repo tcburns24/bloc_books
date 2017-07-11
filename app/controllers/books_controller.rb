@@ -1,4 +1,5 @@
 require "book"
+require "pry"
 
 class BooksController < BlocWorks::Controller
   def welcome
@@ -32,8 +33,7 @@ class BooksController < BlocWorks::Controller
   # DELETE /books/1     - Delete a particular book (def destroy)
 
   def index
-    @books = Book.all
-    render :index
+    render :index, books: Book.all
   end
 
   def show
@@ -50,9 +50,7 @@ class BooksController < BlocWorks::Controller
 
   def create
     req = Rack::Request.new(@env)
-    title_arg = req.params["title"]
-    author_arg = req.params["author"]
-    @book = Book.new(title_arg, author_arg)
+    @book = Book.create(req.params)
     render :create
   end
 
@@ -63,7 +61,7 @@ class BooksController < BlocWorks::Controller
 
   def update
     @book = Book.find(params["id"].to_i)
-    @book.assign_attributes(params)
+    @book.update_attributes(params)
     render :update
   end
 

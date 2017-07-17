@@ -44,6 +44,13 @@ class BooksController < BlocWorks::Controller
     render :show
   end
 
+  # Checkpoint 4 instructs me to implement this show action:
+    # def show
+    #   book = Book.find(params['id'])
+    #   render :show, book: book
+    # end
+  # I'm leaving it commented out since Cyle helped me implement the one above^
+
   def new
     render :new
   end

@@ -4,12 +4,11 @@ app = BlocBooks::Application.new
 use Rack::ContentType
 
 app.route do
-  map "", "books#welcome"
-  map ":controller/:id/:action" # (.*)/(.*)/(.*)
-  map ":controller/:id", default: { "action" => "show" }
-  map ":controller", default: { "action" => "index" }
-
-  map "/hello/world", default: { "action" => "hello_world", "request" => "GET" } # I want this to work for GET
+  map "", "books#welcome", default: { "request" => "GET" }
+  map "/books/welcome1", "books#welcome1", default: { "request" => "GET" }
+  map "/books/welcome2", "books#welcome2", default: { "request" => "GET" }
+  map "/books/welcome3", "books#welcome1", default: { "request" => "GET" }
+  map "/books/welcome4", "books#welcome2", default: { "request" => "GET" }
 
   resources :books
 end

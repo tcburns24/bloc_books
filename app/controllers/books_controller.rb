@@ -2,6 +2,30 @@ require "book"
 require "pry"
 
 class BooksController < BlocWorks::Controller
+
+  def welcome1
+    # Should render version 1
+    @book = "Eloquent Ruby"
+    render
+  end
+
+  def welcome2
+    # Should render version 2
+    render book: "Eloquent Ruby"
+  end
+
+  def welcome3
+    # Should render version 1
+    @book = "Eloquent Ruby"
+    render :welcome1
+  end
+
+  def welcome4
+    # Should render version 2
+    render :welcome2, book: "Eloquent Ruby"
+  end
+
+
   def welcome
     @book = "Eloquent Ruby"
     render :welcome
@@ -37,8 +61,7 @@ class BooksController < BlocWorks::Controller
   end
 
   def show
-    req     = Rack::Request.new(@env)
-    id_arg  = req.params["id"]  # This gets the id=3 part, but "3" is a string
+    id_arg  = @routing_params["id"]  # This gets the id=3 part, but "3" is a string
     id      = id_arg.to_i       # This changes from the string "3" to the integer 3
     @book = Book.find(id)
     render :show

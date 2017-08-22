@@ -25,6 +25,11 @@ class BooksController < BlocWorks::Controller
     render :welcome2, book: "Eloquent Ruby"
   end
 
+  def farewell
+    @book = "Eloquent Ruby"
+    render :farewell1
+  end
+
 
   def welcome
     @book = "Eloquent Ruby"

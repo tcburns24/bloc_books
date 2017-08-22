@@ -9,6 +9,7 @@ app.route do
   map "/books/welcome2", "books#welcome2", default: { "request" => "GET" }
   map "/books/welcome3", "books#welcome1", default: { "request" => "GET" }
   map "/books/welcome4", "books#welcome2", default: { "request" => "GET" }
+  map "/books/farewell", "books#farewell", default: { "request" => "GET" }
 
   resources :books
 end
